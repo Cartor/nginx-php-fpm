@@ -31,6 +31,11 @@ if [ ! -z "$GIT_REPO" ]; then
   chown -Rf nginx.nginx /usr/share/nginx/*
 fi
 
+# Run composer install
+if [ ! -z "$RUN_COMPOSER" ]; then
+  cd /usr/share/nginx/html && composer -n install
+fi
+
 # Display PHP error's or not
 if [[ "$ERRORS" != "1" ]] ; then
   sed -i -e "s/error_reporting =.*=/error_reporting = E_ALL/g" /etc/php5/fpm/php.ini
