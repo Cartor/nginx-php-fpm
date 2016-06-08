@@ -33,7 +33,11 @@ fi
 
 # Run composer install
 if [ ! -z "$RUN_COMPOSER" ]; then
-  cd /usr/share/nginx/html && composer -n install
+  composer_path="/usr/share/nginx/html"
+  if [ ! -z "$COMPOSER_PATH" ]; then 
+    composer_path="$COMPOSER_PATH"
+  fi
+  cd "$composer_path" && composer -n install
 fi
 
 # Display PHP error's or not
